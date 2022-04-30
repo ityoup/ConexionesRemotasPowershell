@@ -1,0 +1,1 @@
+﻿Get-WmiObject Win32_Product -ComputerName $HostnameUiP | Format-Table Name, Version, LastWriteTime
