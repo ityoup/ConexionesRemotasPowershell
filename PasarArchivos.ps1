@@ -3,14 +3,29 @@
 #Recordemos que todos estos son archivos que se encuentran dentro de una computadora local.
 #Proximamente tutorial para sacar la informacion de un FTP
 
+$Hostname = "CC-S01"
 
-$Sesion = New-PSSession -ComputerName "192.168.14.3"
-Copy-Item "C:\Users\jclizarraga\Desktop\Pasodearchivos\ST.exe" -Destination "C:\" -ToSession $Sesion
-Copy-Item "C:\Users\jclizarraga\Desktop\switches.drawio" -Destination "C:\" -ToSession $Sesion
-Copy-Item "C:\Users\jclizarraga\Desktop\switch.pkt" -Destination "C:\" -ToSession $Sesion
-Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\ippadGrand Velas\" -Destination "C:\" -ToSession -Recurse $Sesion
-Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\Cliente\" -Destination "C:\" -ToSession -Recurse $Sesion
-#MUCHO OJO SE USA LA VARIABLE QUE SE ACABA DE CREAR
+
+#Un método especial para la carpeta de instalación
+$Sesion = New-PSSession -ComputerName $Hostname
+Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\Cliente.zip" -Destination "C:\" -ToSession -Force $Sesion
+
+Invoke-Command -ComputerName $Hostname -ScriptBlock{
+
+Expand-Archive -LiteralPath "C:\Cliente.zip" -DestinationPath "C:\Cliente"
+Remove-Item -Path "C:\Cliente.zip" -Force
+
+}
+
+#Metodo para la carpeta de Mitrol
+Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\ippadGrand Velas.zip" -Destination "C:\" -ToSession -Recurse $Sesion
+
+Invoke-Command -ComputerName $Hostname -ScriptBlock{
+
+Expand-Archive -LiteralPath "C:\ippadGrand Velas.zip" -DestinationPath "C:\ippad Grand Velas"
+Remove-Item -Path "C:\ippadGrand Velas.zip" -Force
+
+}
 
 
 foreach ($comp in $computers)
