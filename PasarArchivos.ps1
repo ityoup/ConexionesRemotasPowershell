@@ -3,7 +3,7 @@
 #Recordemos que todos estos son archivos que se encuentran dentro de una computadora local.
 #Proximamente tutorial para sacar la informacion de un FTP
         
-$Hostname = "DESKTOP-643UEIK" #Use de hostname
+$Hostname = "desktop-n88qhkj" #Use de hostname
 
 #$Mucha = Get-Content "C:\Users\jclizarraga\Desktop\hostnames\Hostnames.txt"
 
@@ -48,6 +48,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 choco install -y tightvnc -ia 'ADDLOCAL=Server SERVER_REGISTER_AS_SERVICE=1 SERVER_ADD_FIREWALL_EXCEPTION=1 SERVER_ALLOW_SAS=1 SET_USEVNCAUTHENTICATION=1 VALUE_OF_USEVNCAUTHENTICATION=1 SET_PASSWORD=1 VALUE_OF_PASSWORD=gvcc20, SET_VIEWONLYPASSWORD=1 VALUE_OF_VIEWONLYPASSWORD=gvcc20, SET_USECONTROLAUTHENTICATION=1 VALUE_OF_USECONTROLAUTHENTICATION=1 SET_CONTROLPASSWORD=1 VALUE_OF_CONTROLPASSWORD=gvcc20,'
 choco install googlechrome
 choco install firefox
+choco install lighshot
 #si quieres agregar más, utiliza choco
 }
 
