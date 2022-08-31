@@ -3,7 +3,7 @@
 #Recordemos que todos estos son archivos que se encuentran dentro de una computadora local.
 #Proximamente tutorial para sacar la informacion de un FTP
         
-$Hostname = "desktop-n88qhkj" #Use de hostname
+$Hostname = "CC-03" #Use de hostname
 
 #$Mucha = Get-Content "C:\Users\jclizarraga\Desktop\hostnames\Hostnames.txt"
 
@@ -25,53 +25,34 @@ Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\ClienteRM.zip" -Destinatio
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Expand-Archive -LiteralPath "C:\ClienteRM.zip" -DestinationPath "C:\"
 Remove-Item -Path "C:\ClienteRM.zip" -Force
-$WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("C:\Users\practicanteti\Desktop\RM.lnk")
-$Shortcut.TargetPath = "C:\ClienteRM\TCAFrontOffice.exe"
-$Shortcut.Save()
 }
 
 #Metodo para la carpeta de mitrol
 Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\ippad Grand Velas.zip" -Destination "C:\" -ToSession -Recurse $Sesion
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Expand-Archive -LiteralPath "C:\ippad Grand Velas.zip" -DestinationPath "C:\"
-Remove-Item -Path "C:\ippadGrand Velas.zip" -Force
-$WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("C:\Users\tiCERO.RN\Desktop\Mitrol.lnk")
-$Shortcut.TargetPath = "C:\ippad Grand Velas\Mitrol.CT.Agent.Windows.exe"
-$Shortcut.Save()
+Remove-Item -Path "C:\ippad Grand Velas.zip" -Force
 }
 
 #Instalación de Chocolatey
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 choco install -y tightvnc -ia 'ADDLOCAL=Server SERVER_REGISTER_AS_SERVICE=1 SERVER_ADD_FIREWALL_EXCEPTION=1 SERVER_ALLOW_SAS=1 SET_USEVNCAUTHENTICATION=1 VALUE_OF_USEVNCAUTHENTICATION=1 SET_PASSWORD=1 VALUE_OF_PASSWORD=gvcc20, SET_VIEWONLYPASSWORD=1 VALUE_OF_VIEWONLYPASSWORD=gvcc20, SET_USECONTROLAUTHENTICATION=1 VALUE_OF_USECONTROLAUTHENTICATION=1 SET_CONTROLPASSWORD=1 VALUE_OF_CONTROLPASSWORD=gvcc20,'
-choco install googlechrome
-choco install firefox
-choco install lighshot
+choco install -y googlechrome
+choco install -y firefox
+choco install -y lightshot
+choco install -y 7zip
 #si quieres agregar más, utiliza choco
 }
 
 #Instalador de Office 
 Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\office2007.zip" -Destination "C:\" -ToSession -Recurse $Sesion
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
-Expand-Archive -LiteralPath "C:\office2007.zip" -DestinationPath "C:\"
-C:\office2007\install.msp /adminfile install.msp
-Remove-Item -Path "C:\office2007.zip" -Force
-Remove-Item -Path "C:\office2007\" -Force
+Expand-Archive -LiteralPath "C:\office2007.zip" -DestinationPath "C:\" 
+Remove-Item -Path "C:\office2007.zip" -Force -Recurse
+
 }
 
-
-#Softphone
-Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\SoftPhone.zip" -Destination "C:\" -ToSession -Recurse $Sesion
-Invoke-Command -ComputerName $Hostname -ScriptBlock{
-Expand-Archive -LiteralPath "C:\SoftPhone.zip" -DestinationPath "C:\"
-Remove-Item -Path "C:\SoftPhone.zip" -Force
-$WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("C:\Users\tiCERO.RN\Desktop\Telefono.lnk")
-$Shortcut.TargetPath = "C:\ippadGrand Velas\Mitrol.CT.Agent.Windows.exe"
-$Shortcut.Save()
-}
 
 
 #Instalador de vcreditsMit
@@ -81,11 +62,24 @@ Expand-Archive -LiteralPath "C:\vcredistMit.zip" -DestinationPath "C:\"
 C:\vcredistMit\install_all.bat
 Remove-Item -Path "C:\vcredistMit.zip" -Force
 Remove-Item -Path "C:\vcredistMit\" -Force
-C:\vcredistMit\install_all.bat /adminfile install_all.bat
 
 }
 
+#Instalador antivirus
+Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\Kaspersky.zip" -Destination "C:\" -ToSession -Recurse $Sesion
+Invoke-Command -ComputerName $Hostname -ScriptBlock{
+Expand-Archive -LiteralPath "C:\Kaspersky.zip" -DestinationPath "C:\"
+Remove-Item -Path "C:\Kaspersky.zip" -Force -Recurse
 
+}
+
+#Instalador TotalPos
+Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\TotalPos_Addon-1.0.17.zip" -Destination "C:\" -ToSession -Recurse $Sesion
+Invoke-Command -ComputerName $Hostname -ScriptBlock{
+Expand-Archive -LiteralPath "C:\TotalPos_Addon-1.0.17.zip" -DestinationPath "C:\"
+Remove-Item -Path "C:\TotalPos_Addon-1.0.17.zip" -Force -Recurse
+
+}
 
 
 #Puede modificarse a voluntad, dependiendo de lo que se quiera instalar de chocolatey
