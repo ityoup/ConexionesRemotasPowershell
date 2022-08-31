@@ -42,6 +42,8 @@ choco install -y googlechrome
 choco install -y firefox
 choco install -y lightshot
 choco install -y 7zip
+choco install -y adobereader
+choco install -y vlc
 #si quieres agregar más, utiliza choco
 }
 
@@ -78,7 +80,6 @@ Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\TotalPos_Addon-1.0.17.zip"
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Expand-Archive -LiteralPath "C:\TotalPos_Addon-1.0.17.zip" -DestinationPath "C:\"
 Remove-Item -Path "C:\TotalPos_Addon-1.0.17.zip" -Force -Recurse
-
 }
 
 
