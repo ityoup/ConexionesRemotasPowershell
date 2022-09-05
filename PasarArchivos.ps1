@@ -14,10 +14,6 @@ Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\Cliente.zip" -Destination 
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Expand-Archive -LiteralPath "C:\Cliente.zip" -DestinationPath "C:\"
 Remove-Item -Path "C:\Cliente.zip" -Force
-$WshShell = New-Object -comObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("C:\Users\tiCERO.RN\Desktop\Innsist.lnk")
-$Shortcut.TargetPath = "C:\Cliente\TCAFrontOffice.exe"
-$Shortcut.Save()
 }
 
 #Metodo para pasar ClienteRM y crear acceso directo
@@ -71,11 +67,10 @@ Remove-Item -Path "C:\Kaspersky.zip" -Force -Recurse
 }
 
 #Instalador TotalPos
-Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\TotalPos_Addon-1.0.17.zip" -Destination "C:\" -ToSession -Recurse $Sesion
+Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\TotalPos.zip" -Destination "C:\" -ToSession -Recurse $Sesion
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
-Expand-Archive -LiteralPath "C:\TotalPos_Addon-1.0.17.zip" -DestinationPath "C:\"
-Remove-Item -Path "C:\TotalPos_Addon-1.0.17.zip" -Force -Recurse
-C:\install.exe
+Expand-Archive -LiteralPath "C:\TotalPos.zip" -DestinationPath "C:\"
+Remove-Item -Path "C:\TotalPos.zip" -Force -Recurse
 }
 
 
