@@ -3,7 +3,7 @@
 #Recordemos que todos estos son archivos que se encuentran dentro de una computadora local.
 #Proximamente tutorial para sacar la informacion de un FTP
         
-$Hostname = "CC-03" #Use de hostname
+$Hostname = "DESKTOP-MLBBFTR" #Use de hostname
 
 #$Mucha = Get-Content "C:\Users\jclizarraga\Desktop\hostnames\Hostnames.txt"
 
@@ -52,10 +52,7 @@ Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\office2007.zip" -Destinati
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Expand-Archive -LiteralPath "C:\office2007.zip" -DestinationPath "C:\" 
 Remove-Item -Path "C:\office2007.zip" -Force -Recurse
-
 }
-
-
 
 #Instalador de vcreditsMit
 Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\vcredistMit.zip" -Destination "C:\" -ToSession -Recurse $Sesion
@@ -64,7 +61,6 @@ Expand-Archive -LiteralPath "C:\vcredistMit.zip" -DestinationPath "C:\"
 C:\vcredistMit\install_all.bat
 Remove-Item -Path "C:\vcredistMit.zip" -Force
 Remove-Item -Path "C:\vcredistMit\" -Force
-
 }
 
 #Instalador antivirus
@@ -72,7 +68,6 @@ Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\Kaspersky.zip" -Destinatio
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Expand-Archive -LiteralPath "C:\Kaspersky.zip" -DestinationPath "C:\"
 Remove-Item -Path "C:\Kaspersky.zip" -Force -Recurse
-
 }
 
 #Instalador TotalPos
@@ -80,6 +75,7 @@ Copy-Item "C:\Users\jclizarraga\Desktop\instalaciones\TotalPos_Addon-1.0.17.zip"
 Invoke-Command -ComputerName $Hostname -ScriptBlock{
 Expand-Archive -LiteralPath "C:\TotalPos_Addon-1.0.17.zip" -DestinationPath "C:\"
 Remove-Item -Path "C:\TotalPos_Addon-1.0.17.zip" -Force -Recurse
+C:\install.exe
 }
 
 
